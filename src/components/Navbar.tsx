@@ -2,6 +2,7 @@ import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const navLinks = [
   { label: "Imkoniyatlar", href: "#features" },
@@ -36,11 +37,11 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" size="sm">
-            Kirish
+          <Button variant="ghost" size="sm" asChild>
+            <Link to="/login">Kirish</Link>
           </Button>
-          <Button size="sm" className="bg-gradient-primary text-primary-foreground shadow-glow">
-            Boshlash
+          <Button size="sm" className="bg-gradient-primary text-primary-foreground shadow-glow" asChild>
+            <Link to="/register">Boshlash</Link>
           </Button>
         </div>
 
@@ -65,8 +66,8 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <Button size="sm" className="bg-gradient-primary text-primary-foreground mt-2">
-              Boshlash
+            <Button size="sm" className="bg-gradient-primary text-primary-foreground mt-2" asChild>
+              <Link to="/register">Boshlash</Link>
             </Button>
           </div>
         </div>
