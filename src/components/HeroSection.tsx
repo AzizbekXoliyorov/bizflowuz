@@ -1,6 +1,7 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -35,9 +36,11 @@ const HeroSection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-            <Button size="lg" className="bg-gradient-primary text-primary-foreground shadow-glow px-8 text-base">
-              Bepul boshlash
-              <ArrowRight className="ml-2 h-4 w-4" />
+            <Button size="lg" className="bg-gradient-primary text-primary-foreground shadow-glow px-8 text-base" asChild>
+              <Link to="/register">
+                Bepul boshlash
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
             <Button variant="outline" size="lg" className="text-base">
               <Play className="mr-2 h-4 w-4" />
