@@ -74,7 +74,7 @@ const Footer = () => {
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
             <a className="hover:text-foreground transition-colors" href="https://t.me/bizflowuz">Telegram</a>
             <a className="hover:text-foreground transition-colors" href="https://www.instagram.com/bizflowuz?igsh=YjR2ZzU2ZWg1dHNy">Instagram</a>
-            <a href="#" className="hover:text-foreground transition-colors">LinkedIn</a>
+            <a className="hover:text-foreground transition-colors" href="https://t.me/Kholiyorv">Creator</a>
           </div>
         </div>
       </div>
