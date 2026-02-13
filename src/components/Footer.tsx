@@ -2,34 +2,34 @@ import logo from "@/assets/logo.png";
 import { Link } from "react-router-dom";
 
 const footerLinks = [
-  {
-    title: "Mahsulot",
-    links: [
-      { label: "Imkoniyatlar", href: "/features" },
-      { label: "Narxlar", href: "/pricing" },
-      { label: "Integratsiyalar", href: "/integrations" },
-      { label: "API", href: "/api" },
-    ],
-  },
-  {
-    title: "Kompaniya",
-    links: [
-      { label: "Biz haqimizda", href: "/about" },
-      { label: "Yangiliklar", href: "/news" },
-      { label: "Karyera", href: "/careers" },
-      { label: "Hamkorlik", href: "/partnerships" },
-    ],
-  },
-  {
-    title: "Qo'llab-quvvatlash",
-    links: [
-      { label: "Yordam markazi", href: "/help" },
-      { label: "Bog'lanish", href: "/contact" },
-      { label: "Maxfiylik siyosati", href: "/privacy" },
-      { label: "Foydalanish shartlari", href: "/terms" },
-    ],
-  },
-];
+{
+  title: "Mahsulot",
+  links: [
+  { label: "Imkoniyatlar", href: "/features" },
+  { label: "Narxlar", href: "/pricing" },
+  { label: "Integratsiyalar", href: "/integrations" },
+  { label: "API", href: "/api" }]
+
+},
+{
+  title: "Kompaniya",
+  links: [
+  { label: "Biz haqimizda", href: "/about" },
+  { label: "Yangiliklar", href: "/news" },
+  { label: "Karyera", href: "/careers" },
+  { label: "Hamkorlik", href: "/partnerships" }]
+
+},
+{
+  title: "Qo'llab-quvvatlash",
+  links: [
+  { label: "Yordam markazi", href: "/help" },
+  { label: "Bog'lanish", href: "/contact" },
+  { label: "Maxfiylik siyosati", href: "/privacy" },
+  { label: "Foydalanish shartlari", href: "/terms" }]
+
+}];
+
 
 const Footer = () => {
   return (
@@ -48,23 +48,23 @@ const Footer = () => {
             </p>
           </div>
 
-          {footerLinks.map((col) => (
-            <div key={col.title}>
+          {footerLinks.map((col) =>
+          <div key={col.title}>
               <h4 className="font-display font-semibold text-sm mb-4">{col.title}</h4>
               <ul className="space-y-2">
-                {col.links.map((link) => (
-                  <li key={link.label}>
+                {col.links.map((link) =>
+              <li key={link.label}>
                     <Link
-                      to={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
+                  to={link.href}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+
                       {link.label}
                     </Link>
                   </li>
-                ))}
+              )}
               </ul>
             </div>
-          ))}
+          )}
         </div>
 
         <div className="mt-12 pt-6 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
@@ -72,14 +72,14 @@ const Footer = () => {
             © 2026 BizFlow. Barcha huquqlar himoyalangan.
           </p>
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors">Telegram</a>
+            <a className="hover:text-foreground transition-colors" href="https://t.me/bizflowuz">Telegram</a>
             <a href="#" className="hover:text-foreground transition-colors">Instagram</a>
             <a href="#" className="hover:text-foreground transition-colors">LinkedIn</a>
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>);
+
 };
 
 export default Footer;
