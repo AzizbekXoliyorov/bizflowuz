@@ -1,6 +1,6 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
@@ -42,9 +42,10 @@ const HeroSection = () => {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="text-base">
-              <Play className="mr-2 h-4 w-4" />
-              Demo ko'rish
+            <Button variant="outline" size="lg" className="text-base" asChild>
+              <Link to="/features">
+                Imkoniyatlarni ko'rish
+              </Link>
             </Button>
           </div>
 
