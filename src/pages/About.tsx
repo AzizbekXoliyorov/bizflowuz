@@ -15,9 +15,9 @@ const stats = [
 ];
 
 const team = [
-  { name: "Aziz Karimov", role: "Asoschisi va CEO", icon: Users },
-  { name: "Malika Rahimova", role: "CTO", icon: Award },
-  { name: "Sardor Toshev", role: "Mahsulot direktori", icon: TrendingUp },
+  { name: "Azizbek Kholiyorov", role: "Asoschisi va CEO", icon: Users },
+  { name: "Jasur Haydarov", role: "CTO", icon: Award },
+  { name: "Azizbek Kholiyorov", role: "Mahsulot direktori", icon: TrendingUp },
 ];
 
 const About = () => {
