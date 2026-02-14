@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTheme } from "next-themes";
 import {
   UserCircle, Bell, Shield, Palette, Globe, CreditCard, ArrowLeft,
   Camera, Mail, Phone, Building, MapPin, Save,
@@ -11,6 +12,8 @@ import {
 import { Link } from "react-router-dom";
 
 const Settings = () => {
+  const { theme, setTheme } = useTheme();
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -184,13 +187,19 @@ const Settings = () => {
                 <Label className="mb-3 block">Tema</Label>
                 <div className="grid grid-cols-3 gap-3">
                   {[
-                    { label: "Yorug'", value: "light", preview: "bg-background border-2 border-primary" },
+                    { label: "Yorug'", value: "light", preview: "bg-background border-2 border-border" },
                     { label: "Qorong'u", value: "dark", preview: "bg-foreground" },
                     { label: "Tizim", value: "system", preview: "bg-gradient-to-r from-background to-foreground" },
-                  ].map((theme) => (
-                    <button key={theme.value} className="p-4 rounded-xl border border-border hover:border-primary transition-colors text-center">
-                      <div className={`w-full h-16 rounded-lg mb-2 ${theme.preview}`} />
-                      <span className="text-sm font-medium">{theme.label}</span>
+                  ].map((t) => (
+                    <button
+                      key={t.value}
+                      onClick={() => setTheme(t.value)}
+                      className={`p-4 rounded-xl border transition-colors text-center ${
+                        theme === t.value ? "border-primary ring-2 ring-primary/20" : "border-border hover:border-primary/50"
+                      }`}
+                    >
+                      <div className={`w-full h-16 rounded-lg mb-2 ${t.preview}`} />
+                      <span className="text-sm font-medium">{t.label}</span>
                     </button>
                   ))}
                 </div>

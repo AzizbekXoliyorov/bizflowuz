@@ -1,5 +1,6 @@
 import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   TrendingUp, Users, ShoppingCart, DollarSign, ArrowUpRight, ArrowDownRight,
   Package, Bell, Search, LayoutDashboard, Settings, LogOut, BarChart3,
@@ -147,6 +148,7 @@ const Dashboard = () => {
                 <Bell className="h-5 w-5 text-muted-foreground" />
                 <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-accent" />
               </button>
+              <ThemeToggle />
               <Link to="/settings" className="w-9 h-9 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground text-sm font-bold">
                 A
               </Link>
