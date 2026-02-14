@@ -2,12 +2,13 @@ import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff, ArrowRight } from "lucide-react";
+import { Eye, EyeOff, ArrowRight, ArrowLeft } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex">
@@ -47,12 +48,20 @@ const Login = () => {
       {/* Right panel - form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-background">
         <div className="w-full max-w-md">
-          <Link to="/" className="flex items-center gap-2 mb-12 lg:hidden">
-            <img src={logo} alt="BizFlow" className="h-10 w-10 object-contain" />
-            <span className="font-display text-xl font-bold">
-              Biz<span className="text-gradient">Flow</span>
-            </span>
-          </Link>
+          <div className="flex items-center gap-3 mb-8">
+            <button
+              onClick={() => navigate(-1)}
+              className="p-2 rounded-xl hover:bg-muted transition-colors"
+            >
+              <ArrowLeft className="h-5 w-5 text-muted-foreground" />
+            </button>
+            <Link to="/" className="flex items-center gap-2 lg:hidden">
+              <img src={logo} alt="BizFlow" className="h-10 w-10 object-contain" />
+              <span className="font-display text-xl font-bold">
+                Biz<span className="text-gradient">Flow</span>
+              </span>
+            </Link>
+          </div>
 
           <div className="mb-8">
             <h1 className="font-display text-3xl font-bold mb-2">Tizimga kirish</h1>
