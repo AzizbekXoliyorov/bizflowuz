@@ -6,7 +6,7 @@ const Privacy = () => {
       <section className="py-20 bg-gradient-surface">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">Maxfiylik siyosati</h1>
-          <p className="text-muted-foreground">Oxirgi yangilangan: 2026-yil 1-fevral</p>
+          <p className="text-muted-foreground">Oxirgi yangilangan: 2026-yil 14-fevral</p>
         </div>
       </section>
 
