@@ -9,8 +9,8 @@ const plans = [
     period: "so'm / oy",
     desc: "Kichik bizneslar uchun boshlang'ich reja",
     features: [
-      "500 tagacha buyurtma",
-      "200 tagacha mijoz",
+      "200 tagacha buyurtma",
+      "20 tagacha mijoz",
       "Asosiy hisobotlar",
       "3 foydalanuvchi",
       "Email qo'llab-quvvatlash",
