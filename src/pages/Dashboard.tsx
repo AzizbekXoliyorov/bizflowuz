@@ -5,7 +5,7 @@ import {
   TrendingUp, Users, ShoppingCart, DollarSign, ArrowUpRight, ArrowDownRight,
   Package, Bell, Search, LayoutDashboard, Settings, LogOut, BarChart3,
   Zap, ChevronDown, Plus, Filter, Download, Menu, X, FileText, Wallet,
-  Calendar, Clock, UserCircle,
+  Calendar, Clock, UserCircle, Shield,
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -59,6 +59,7 @@ const sidebarItems = [
   { icon: BarChart3, label: "Analitika", href: "/dashboard" },
   { icon: Zap, label: "Avtomatlashtirish", href: "/dashboard" },
   { icon: FileText, label: "Hisobotlar", href: "/dashboard" },
+  { icon: Shield, label: "Admin Panel", href: "/admin" },
 ];
 
 const Dashboard = () => {
@@ -90,7 +91,7 @@ const Dashboard = () => {
             <Link
               key={item.label}
               to={item.href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all ${
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all min-h-[44px] ${
                 item.active
                   ? "bg-primary/10 text-primary font-semibold shadow-sm"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -177,7 +178,7 @@ const Dashboard = () => {
           {/* Stats cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="p-5 rounded-2xl border border-border bg-card hover:shadow-card-hover transition-all duration-300">
+              <div key={stat.label} className="p-5 rounded-2xl border border-border bg-card shadow-card hover:shadow-card-hover transition-all duration-300">
                 <div className="flex items-center justify-between mb-3">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${stat.color}`}>
                     <stat.icon className="h-5 w-5" />
