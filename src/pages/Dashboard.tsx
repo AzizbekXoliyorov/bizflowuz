@@ -8,7 +8,8 @@ import {
   Calendar, Clock, UserCircle, Shield,
 } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, AreaChart, Area } from "recharts";
 
 const revenueData = [
@@ -64,6 +65,8 @@ const sidebarItems = [
 
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { user, signOut, isAdmin } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-background flex">
@@ -111,13 +114,13 @@ const Dashboard = () => {
             <Settings className="h-4 w-4" />
             Sozlamalar
           </Link>
-          <Link
-            to="/"
+          <button
+            onClick={async () => { await signOut(); navigate("/"); }}
             className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-muted-foreground hover:text-destructive hover:bg-destructive/5 transition-all"
           >
             <LogOut className="h-4 w-4" />
             Chiqish
-          </Link>
+          </button>
         </div>
       </aside>
 
@@ -132,7 +135,7 @@ const Dashboard = () => {
               </button>
               <div>
                 <h1 className="font-display text-lg font-bold">Dashboard</h1>
-                <p className="text-xs text-muted-foreground">Xush kelibsiz, Admin 👋</p>
+                <p className="text-xs text-muted-foreground">Xush kelibsiz, {user?.user_metadata?.name || user?.email} 👋</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -151,7 +154,7 @@ const Dashboard = () => {
               </button>
               <ThemeToggle />
               <Link to="/settings" className="w-9 h-9 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground text-sm font-bold">
-                A
+                {(user?.user_metadata?.name || user?.email || "U")[0].toUpperCase()}
               </Link>
             </div>
           </div>

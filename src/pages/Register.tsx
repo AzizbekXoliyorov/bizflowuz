@@ -6,6 +6,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Eye, EyeOff, ArrowRight, Check, ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 const benefits = [
   "Cheksiz buyurtmalar va mijozlar",
@@ -16,7 +18,41 @@ const benefits = [
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [agreed, setAgreed] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { signUp } = useAuth();
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!firstName || !email || !password) {
+      toast({ title: "Xatolik", description: "Barcha maydonlarni to'ldiring", variant: "destructive" });
+      return;
+    }
+    if (password.length < 6) {
+      toast({ title: "Xatolik", description: "Parol kamida 6 belgidan iborat bo'lishi kerak", variant: "destructive" });
+      return;
+    }
+    if (!agreed) {
+      toast({ title: "Xatolik", description: "Shartlarga rozilik bildiring", variant: "destructive" });
+      return;
+    }
+    setLoading(true);
+    const name = `${firstName} ${lastName}`.trim();
+    const { error } = await signUp(email, password, name);
+    setLoading(false);
+    if (error) {
+      toast({ title: "Xatolik", description: error.message, variant: "destructive" });
+    } else {
+      toast({ title: "Muvaffaqiyat!", description: "Emailingizga tasdiqlash xabar yuborildi. Emailni tekshiring." });
+      navigate("/login");
+    }
+  };
 
   return (
     <div className="min-h-screen flex">
@@ -61,10 +97,7 @@ const Register = () => {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-background">
         <div className="w-full max-w-md">
           <div className="flex items-center gap-3 mb-8">
-            <button
-              onClick={() => navigate(-1)}
-              className="p-2 rounded-xl hover:bg-muted transition-colors"
-            >
+            <button onClick={() => navigate(-1)} className="p-2 rounded-xl hover:bg-muted transition-colors">
               <ArrowLeft className="h-5 w-5 text-muted-foreground" />
             </button>
             <Link to="/" className="flex items-center gap-2 lg:hidden">
@@ -82,26 +115,21 @@ const Register = () => {
             </p>
           </div>
 
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="firstName">Ism</Label>
-                <Input id="firstName" placeholder="Ism" className="h-12" />
+                <Input id="firstName" placeholder="Ism" className="h-12" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="lastName">Familiya</Label>
-                <Input id="lastName" placeholder="Familiya" className="h-12" />
+                <Input id="lastName" placeholder="Familiya" className="h-12" value={lastName} onChange={(e) => setLastName(e.target.value)} />
               </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="company">Kompaniya nomi</Label>
-              <Input id="company" placeholder="BizFlow LLC" className="h-12" />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="email">Email manzil</Label>
-              <Input id="email" type="email" placeholder="sizning@email.uz" className="h-12" />
+              <Input id="email" type="email" placeholder="sizning@email.uz" className="h-12" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
 
             <div className="space-y-2">
@@ -110,8 +138,10 @@ const Register = () => {
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Kamida 8 belgi"
+                  placeholder="Kamida 6 belgi"
                   className="h-12 pr-10"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
                   type="button"
@@ -124,22 +154,23 @@ const Register = () => {
             </div>
 
             <div className="flex items-start gap-2">
-              <Checkbox id="terms" className="mt-1" />
+              <Checkbox id="terms" className="mt-1" checked={agreed} onCheckedChange={(v) => setAgreed(v === true)} />
               <label htmlFor="terms" className="text-sm text-muted-foreground leading-relaxed">
                 Men{" "}
-                <a href="#" className="text-primary hover:underline">Foydalanish shartlari</a>
+                <Link to="/terms" className="text-primary hover:underline">Foydalanish shartlari</Link>
                 {" "}va{" "}
-                <a href="#" className="text-primary hover:underline">Maxfiylik siyosati</a>
+                <Link to="/privacy" className="text-primary hover:underline">Maxfiylik siyosati</Link>
                 ga roziman.
               </label>
             </div>
 
             <Button
               type="submit"
+              disabled={loading}
               className="w-full h-12 bg-gradient-primary text-primary-foreground shadow-glow text-base"
             >
-              Ro'yxatdan o'tish
-              <ArrowRight className="ml-2 h-4 w-4" />
+              {loading ? "Ro'yxatdan o'tilmoqda..." : "Ro'yxatdan o'tish"}
+              {!loading && <ArrowRight className="ml-2 h-4 w-4" />}
             </Button>
           </form>
 
