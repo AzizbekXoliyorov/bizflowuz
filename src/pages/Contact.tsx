@@ -39,7 +39,7 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
             <div>
               <h2 className="font-display text-2xl font-bold mb-6">Xabar yuboring</h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4" action="https://formsubmit.co/azizbekxoliyorov11111111@email.com" method="POST">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Input placeholder="Ismingiz" required className="rounded-xl" />
                   <Input type="email" placeholder="Email" required className="rounded-xl" />
