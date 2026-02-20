@@ -41,10 +41,10 @@ const Contact = () => {
               <h2 className="font-display text-2xl font-bold mb-6">Xabar yuboring</h2>
               <form onSubmit={handleSubmit} className="space-y-4" action="https://formsubmit.co/azizbekxoliyorov11111111@gmail.com" method="POST">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <Input placeholder="Ismingiz" required className="rounded-xl" />
-                  <Input type="email" placeholder="Email" required className="rounded-xl" />
+                  <Input placeholder="Ismingiz"  name="name" required className="rounded-xl" />
+                  <Input type="email" placeholder="Email"  name="email" required className="rounded-xl" />
                 </div>
-                <Input placeholder="Mavzu" required className="rounded-xl" />
+                <Input placeholder="Mavzu" name="message" required className="rounded-xl" />
                 <Textarea placeholder="Xabaringiz..." required className="rounded-xl min-h-[120px]" />
                 <Button type="submit" disabled={loading} className="bg-gradient-primary text-primary-foreground shadow-glow gap-2">
                   <Send className="h-4 w-4" />
